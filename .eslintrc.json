@@ -29,6 +29,7 @@
     "space-in-parens": "error",
     "quote-props": ["error", "as-needed"],
     "quotes": "off",
+    "react/jsx-sort-props": "error",
     "react/jsx-uses-react": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
