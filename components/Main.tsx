@@ -11,6 +11,7 @@ export default function Main({
 		<Container component="main" maxWidth={size}>
 			<Toolbar sx={{ mb: 3 }} />
 			{children}
+			<Toolbar />
 		</Container>
 	);
 }

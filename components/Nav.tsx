@@ -1,6 +1,16 @@
-import { AppBar, Button, Link, Toolbar } from "@mui/material";
+"use client";
+
+import React from "react";
+
+import { Brightness4, Brightness7 } from "@mui/icons-material";
+import { AppBar, Button, IconButton, Link, Stack, Toolbar, useTheme } from "@mui/material";
+import { ColorModeContext } from "@/utils/theme";
 
 export default function Nav() {
+	const theme = useTheme();
+	const mode = theme.palette.mode;
+  const colorMode = React.useContext(ColorModeContext);
+
 	return (
 		<AppBar>
 			<Toolbar sx={{ justifyContent: "space-between" }}>
@@ -13,13 +23,25 @@ export default function Nav() {
 				>
 					Pokédex Tracker
 				</Link>
-        <Button
-					color="inherit"
-					component="a"
-					href="/login"
-				>
-					Login
-				</Button>
+				<Stack direction="row">
+					<IconButton
+						color="inherit"
+						onClick={colorMode.toggleColorMode}
+					>
+						{mode === "dark" ? (
+							<Brightness7 />
+						) : (
+							<Brightness4 />
+						)}
+					</IconButton>
+					<Button
+						color="inherit"
+						component="a"
+						href="/login"
+					>
+						Login
+					</Button>
+				</Stack>
 			</Toolbar>
 		</AppBar>
 	);

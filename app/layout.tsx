@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import Nav from "@/components/Nav";
+
+import Theme from "@/utils/theme";
+
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { Paper } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,14 +20,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
-				<AppRouterCacheProvider>
-					<Nav />
-					{children}
-				</AppRouterCacheProvider>
-			</body>
-    </html>
+		<html lang="en">
+			<Theme>
+				<Paper className={inter.className} component="body" elevation={0}>
+					<AppRouterCacheProvider>
+						<Nav />
+						{children}
+					</AppRouterCacheProvider>
+				</Paper>
+			</Theme>
+		</html>
   );
 }
