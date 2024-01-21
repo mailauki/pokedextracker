@@ -1,6 +1,9 @@
 import Main from "@/components/Main";
-import type { Dex } from "@/types/dexes";
+import DexPreview from "./DexPreview";
+
 import { Typography } from "@mui/material";
+
+import type { Dex } from "@/types/dexes";
 
 export default async function Profile({ params }: { params: { username: string } }) {
 	const { username } = params;
@@ -10,8 +13,28 @@ export default async function Profile({ params }: { params: { username: string }
 	return (
 		<Main size="md">
 			<Typography variant="h3">{username}{"'s Profile"}</Typography>
+			<Typography
+				sx={{
+					"& span": {
+						color: user.friend_code_switch ? "inherit" : "text.disabled",
+					},
+				}}
+			>
+				<b>3DS FC</b>:{" "}
+				<span>{user.friend_code_3ds || "XXXX-XXXX-XXXX"}</span>
+			</Typography>
+			<Typography
+				sx={{
+					"& span": {
+						color: user.friend_code_switch ? "inherit" : "text.disabled",
+					},
+				}}
+			>
+				<b>Switch FC</b>:{" "}
+				<span>{user.friend_code_switch || "SW-XXXX-XXXX-XXXX"}</span>
+			</Typography>
 			{/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-			{user.dexes.map((dex: Dex) => <p key={dex.id}>{dex.title}</p>)}
+			{user.dexes.map((dex: Dex) => <DexPreview dex={dex} key={dex.id} />)}
 		</Main>
 	);
 }
