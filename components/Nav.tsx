@@ -4,7 +4,6 @@ export default function Nav() {
 	return (
 		<AppBar>
 			<Toolbar sx={{ justifyContent: "space-between" }}>
-				{/* <Typography variant="h6">Pokédex Tracker</Typography> */}
 				<Link
 					color="inherit"
 					href="/"
