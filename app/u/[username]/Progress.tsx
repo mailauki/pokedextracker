@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, LinearProgress, Stack, Typography } from "@mui/material";
+import { Box, LinearProgress, Stack, Typography, useTheme } from "@mui/material";
 
 export default function Progress({
 	caught, total,
@@ -9,6 +9,8 @@ export default function Progress({
 	total: number
 }) {
   const percent = 100 * caught / total;
+	const theme = useTheme();
+	const mode = theme.palette.mode;
 
 	return (
 		<Box sx={{ position: "relative" }}>
@@ -23,6 +25,7 @@ export default function Progress({
 				<Typography
 					sx={{
 						// color: (theme) => theme.palette.secondary.contrastText,
+						filter: mode === "dark" ? "drop-shadow(2px 2px 3px black)" : "inherit",
 					}}
 					variant="overline"
 				>
@@ -34,6 +37,7 @@ export default function Progress({
 				sx={{
 					height: 28,
 					borderRadius: (theme) => theme.shape.borderRadius,
+					filter: mode === "dark" ? "opacity(0.75)" : "inherit",
 				}}
 				value={percent}
 				variant="determinate"

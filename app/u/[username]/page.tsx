@@ -5,7 +5,13 @@ import { Typography } from "@mui/material";
 
 import type { Dex } from "@/types/dexes";
 
-export default async function Profile({ params }: { params: { username: string } }) {
+export default async function Profile({
+	params,
+}: {
+	params: {
+		username: string,
+	}
+}) {
 	const { username } = params;
 	const res = await fetch(`https://pokedextracker.com/api/users/${username}`);
 	const user = await res.json();
@@ -17,6 +23,8 @@ export default async function Profile({ params }: { params: { username: string }
 				sx={{
 					"& span": {
 						color: user.friend_code_switch ? "inherit" : "text.disabled",
+						pointerEvents: "none",
+						textDecoration: "none",
 					},
 				}}
 			>
@@ -27,6 +35,8 @@ export default async function Profile({ params }: { params: { username: string }
 				sx={{
 					"& span": {
 						color: user.friend_code_switch ? "inherit" : "text.disabled",
+						pointerEvents: "none",
+						textDecoration: "none",
 					},
 				}}
 			>
