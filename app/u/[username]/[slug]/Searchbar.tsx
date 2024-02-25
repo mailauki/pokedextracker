@@ -1,12 +1,13 @@
 "use client";
 
-import { Search } from "@mui/icons-material";
 import { AppBar, Checkbox, Container, FormControlLabel, InputAdornment, TextField, Toolbar } from "@mui/material";
+
+import { Search } from "@mui/icons-material";
 
 export default function Searchbar() {
 	return (
 		<AppBar
-			color="transparent"
+			color="inherit"
 			position="fixed"
 			sx={{ zIndex: (theme) => theme.zIndex.appBar - 1 }}
 		>

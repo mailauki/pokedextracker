@@ -1,10 +1,13 @@
 import Main from "@/components/Main";
-
-import type { Dex } from "@/types/dexes";
-
-import { Toolbar } from "@mui/material";
 import Searchbar from "./Searchbar";
 import DexHeader from "./DexHeader";
+
+import { Toolbar } from "@mui/material";
+
+import type { Dex } from "@/types/dexes";
+import PokeContainer from "./PokeContainer";
+
+// import { useTrackerContext } from "@/components/useTracker";
 
 export default async function Dex({
 	params,
@@ -16,9 +19,14 @@ export default async function Dex({
 }) {
 	const { username } = params;
 	const { slug } = params;
-	const res = await fetch(`https://pokedextracker.com/api/users/${username}`);
-	const user = await res.json();
+	const userRes = await fetch(`https://pokedextracker.com/api/users/${username}`);
+	const user = await userRes.json();
 	const dex = user.dexes.find((dex: Dex) => dex.slug === slug);
+
+	const captureRes = await fetch(`https://pokedextracker.com/api/users/${username}/dexes/${slug}/captures`);
+	const captures = await captureRes.json();
+
+	console.log({ captures });
 
 	return (
 		<>
@@ -28,6 +36,8 @@ export default async function Dex({
 				{/* <Typography variant="h3">{dex.title}</Typography>
 				<Link href={`/u/${username}`}>/u/{username}</Link> */}
 				<DexHeader dex={dex} />
+				<PokeContainer captures={captures} dex={dex} />
+				{/* <pre>{JSON.stringify(captures, null, 2)}</pre> */}
 			</Main>
 		</>
 	);

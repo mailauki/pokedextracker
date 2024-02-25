@@ -3,7 +3,6 @@ import { Chip, Stack } from "@mui/material";
 import { AutoAwesome as ShinyIcon } from "@mui/icons-material";
 
 import type { Dex } from "@/types/dexes";
-// import { useParams } from "next/navigation";
 
 const EXCLUDED_TAGS = ["regional", "game national", "full national"];
 

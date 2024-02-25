@@ -18,9 +18,7 @@ export default function DexHeader({ dex }: { dex: Dex }) {
 				direction="row"
 				justifyContent="space-between"
 			>
-				{/* <Link href={`/u/${username}/${dex.slug}`} variant="h6">{dex.title}</Link> */}
 				<Typography variant="h3">{dex.title}</Typography>
-				{/* <Link href={`/u/${username}`}>/u/{username}</Link> */}
 				<DexTypes dex={dex} />
 			</Stack>
 			<Link href={`/u/${username}`}>/u/{username}</Link>
