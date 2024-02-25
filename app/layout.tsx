@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
 		<html lang="en">
 			<Theme>
-				<Paper className={inter.className} component="body" elevation={0}>
+				<Paper className={inter.className} component="body" elevation={0} sx={{ m: 0 }}>
 					<AppRouterCacheProvider>
 						<Nav />
 						{children}

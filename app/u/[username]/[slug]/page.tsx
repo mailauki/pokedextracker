@@ -2,7 +2,8 @@ import Main from "@/components/Main";
 
 import type { Dex } from "@/types/dexes";
 
-import { Typography } from "@mui/material";
+import { Link, Toolbar, Typography } from "@mui/material";
+import Searchbar from "./Searchbar";
 
 export default async function Dex({
 	params,
@@ -19,8 +20,33 @@ export default async function Dex({
 	const dex = user.dexes.find((dex: Dex) => dex.slug === slug);
 
 	return (
-		<Main size="md">
-			<Typography variant="h3">{dex.title}</Typography>
-		</Main>
+		<>
+			<Searchbar />
+			<Main size="md">
+				<Toolbar sx={{ height: 130 }} />
+				<Typography variant="h3">{dex.title}</Typography>
+				<Link href={`/u/${username}`}>/u/{username}</Link>
+			</Main>
+			{/* <Toolbar />
+			<AppBar color="transparent" position="sticky">
+				<Toolbar>
+					<Typography>Hello, world!</Typography>
+				</Toolbar>
+			</AppBar>
+			<Container maxWidth="md">
+				<Typography variant="h3">{dex.title}</Typography>
+				<Link href={`/u/${username}`}>/u/{username}</Link>
+			</Container> */}
+			{/* <Main size="md">
+				<AppBar>
+					<Toolbar />
+					<Toolbar>
+						<Typography>Hello, world!</Typography>
+					</Toolbar>
+				</AppBar>
+				<Typography variant="h3">{dex.title}</Typography>
+				<Link href={`/u/${username}`}>/u/{username}</Link>
+			</Main> */}
+		</>
 	);
 }

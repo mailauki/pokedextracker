@@ -12,7 +12,7 @@ export default function Nav() {
   const colorMode = React.useContext(ColorModeContext);
 
 	return (
-		<AppBar>
+		<AppBar position="fixed">
 			<Toolbar sx={{ justifyContent: "space-between" }}>
 				<Link
 					color="inherit"
