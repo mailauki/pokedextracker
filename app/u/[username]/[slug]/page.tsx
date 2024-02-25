@@ -2,8 +2,9 @@ import Main from "@/components/Main";
 
 import type { Dex } from "@/types/dexes";
 
-import { Link, Toolbar, Typography } from "@mui/material";
+import { Toolbar } from "@mui/material";
 import Searchbar from "./Searchbar";
+import DexHeader from "./DexHeader";
 
 export default async function Dex({
 	params,
@@ -24,29 +25,10 @@ export default async function Dex({
 			<Searchbar />
 			<Main size="md">
 				<Toolbar sx={{ height: 130 }} />
-				<Typography variant="h3">{dex.title}</Typography>
-				<Link href={`/u/${username}`}>/u/{username}</Link>
+				{/* <Typography variant="h3">{dex.title}</Typography>
+				<Link href={`/u/${username}`}>/u/{username}</Link> */}
+				<DexHeader dex={dex} />
 			</Main>
-			{/* <Toolbar />
-			<AppBar color="transparent" position="sticky">
-				<Toolbar>
-					<Typography>Hello, world!</Typography>
-				</Toolbar>
-			</AppBar>
-			<Container maxWidth="md">
-				<Typography variant="h3">{dex.title}</Typography>
-				<Link href={`/u/${username}`}>/u/{username}</Link>
-			</Container> */}
-			{/* <Main size="md">
-				<AppBar>
-					<Toolbar />
-					<Toolbar>
-						<Typography>Hello, world!</Typography>
-					</Toolbar>
-				</AppBar>
-				<Typography variant="h3">{dex.title}</Typography>
-				<Link href={`/u/${username}`}>/u/{username}</Link>
-			</Main> */}
 		</>
 	);
 }

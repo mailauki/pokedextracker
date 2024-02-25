@@ -13,7 +13,7 @@ export default function Progress({
 	const mode = theme.palette.mode;
 
 	return (
-		<Box sx={{ position: "relative" }}>
+		<Box sx={{ position: "relative", mt: 1 }}>
 			<Stack
 				alignItems="center"
 				justifyContent="center"
