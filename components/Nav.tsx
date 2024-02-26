@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import { Brightness4, Brightness7 } from "@mui/icons-material";
-import { AppBar, Button, IconButton, Link, Stack, Toolbar, useTheme } from "@mui/material";
-import { ColorModeContext } from "@/utils/theme";
+import { Brightness4, Brightness7 } from '@mui/icons-material';
+import { AppBar, Button, IconButton, Link, Stack, Toolbar, useTheme } from '@mui/material';
+import { ColorModeContext } from '@/utils/theme';
 
 export default function Nav() {
 	const theme = useTheme();
@@ -13,11 +13,11 @@ export default function Nav() {
 
 	return (
 		<AppBar position="fixed">
-			<Toolbar sx={{ justifyContent: "space-between" }}>
+			<Toolbar sx={{ justifyContent: 'space-between' }}>
 				<Link
 					color="inherit"
 					href="/"
-					sx={{ cursor: "pointer" }}
+					sx={{ cursor: 'pointer' }}
 					underline="none"
 					variant="h6"
 				>
@@ -28,7 +28,7 @@ export default function Nav() {
 						color="inherit"
 						onClick={colorMode.toggleColorMode}
 					>
-						{mode === "dark" ? (
+						{mode === 'dark' ? (
 							<Brightness7 />
 						) : (
 							<Brightness4 />

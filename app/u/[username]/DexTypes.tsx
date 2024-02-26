@@ -1,10 +1,10 @@
-import { Chip, Stack } from "@mui/material";
+import { Chip, Stack } from '@mui/material';
 
-import { AutoAwesome as ShinyIcon } from "@mui/icons-material";
+import { AutoAwesome as ShinyIcon } from '@mui/icons-material';
 
-import type { Dex } from "@/types/dexes";
+import type { Dex } from '@/types/dexes';
 
-const EXCLUDED_TAGS = ["regional", "game national", "full national"];
+const EXCLUDED_TAGS = ['regional', 'game national', 'full national'];
 
 export default function DexTypes({ dex }: { dex: Dex }) {
 	return (
@@ -12,7 +12,7 @@ export default function DexTypes({ dex }: { dex: Dex }) {
 			alignItems="center"
 			direction="row"
 			spacing={1}
-			sx={{ display: { xs: "none", sm: "flex" } }}
+			sx={{ display: { xs: 'none', sm: 'flex' } }}
 		>
 			{dex.shiny && <ShinyIcon fontSize="small" />}
 			{[
@@ -21,13 +21,13 @@ export default function DexTypes({ dex }: { dex: Dex }) {
 			].map((tag) => (
 				<Chip
 					key={tag}
-					label={tag.replace(/^customization-/g, "")}
-					sx={{ textTransform: "capitalize" }}
+					label={tag.replace(/^customization-/g, '')}
+					sx={{ textTransform: 'capitalize' }}
 				/>
 			))}
 			<Chip
 				label={dex.game.name}
-				sx={{ textTransform: "capitalize" }}
+				sx={{ textTransform: 'capitalize' }}
 			/>
 		</Stack>
 	);

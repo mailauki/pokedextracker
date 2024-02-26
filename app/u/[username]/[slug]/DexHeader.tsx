@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import Progress from "../Progress";
-import DexTypes from "../DexTypes";
+import Progress from '../Progress';
+import DexTypes from '../DexTypes';
 
-import { Box, Link, Stack, Typography } from "@mui/material";
+import { Box, Link, Stack, Typography } from '@mui/material';
 
-import type { Dex } from "@/types/dexes";
-import { useParams } from "next/navigation";
+import type { Dex } from '@/types/dexes';
+import { useParams } from 'next/navigation';
 
 export default function DexHeader({ dex }: { dex: Dex }) {
   const { username } = useParams<{ username: string }>();

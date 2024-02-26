@@ -1,24 +1,31 @@
-import Main from "@/components/Main";
-import Searchbar from "./Searchbar";
-import DexHeader from "./DexHeader";
+import type { Metadata } from 'next';
 
-import { Toolbar } from "@mui/material";
+import Main from '@/components/Main';
+import Searchbar from './Searchbar';
+import DexHeader from './DexHeader';
+import PokeContainer from './PokeContainer';
 
-import type { Dex } from "@/types/dexes";
-import PokeContainer from "./PokeContainer";
+import { Toolbar } from '@mui/material';
 
-// import { useTrackerContext } from "@/components/useTracker";
+import type { Dex } from '@/types/dexes';
 
-export default async function Dex({
-	params,
-}: {
-	params: {
-		username: string,
-		slug: string
-	}
-}) {
-	const { username } = params;
-	const { slug } = params;
+interface Props {
+  params: { username: string, slug: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const { username, slug } = params;
+	const userRes = await fetch(`https://pokedextracker.com/api/users/${username}`);
+	const user = await userRes.json();
+	const dex = user.dexes.find((dex: Dex) => dex.slug === slug);
+
+  return {
+    title: dex.title || 'Dex',
+  };
+}
+
+export default async function Dex({ params }: Props) {
+	const { username, slug } = params;
 	const userRes = await fetch(`https://pokedextracker.com/api/users/${username}`);
 	const user = await userRes.json();
 	const dex = user.dexes.find((dex: Dex) => dex.slug === slug);
@@ -26,18 +33,13 @@ export default async function Dex({
 	const captureRes = await fetch(`https://pokedextracker.com/api/users/${username}/dexes/${slug}/captures`);
 	const captures = await captureRes.json();
 
-	console.log({ captures });
-
 	return (
 		<>
 			<Searchbar />
 			<Main size="md">
 				<Toolbar sx={{ height: 130 }} />
-				{/* <Typography variant="h3">{dex.title}</Typography>
-				<Link href={`/u/${username}`}>/u/{username}</Link> */}
 				<DexHeader dex={dex} />
 				<PokeContainer captures={captures} dex={dex} />
-				{/* <pre>{JSON.stringify(captures, null, 2)}</pre> */}
 			</Main>
 		</>
 	);

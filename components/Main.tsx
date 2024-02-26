@@ -1,5 +1,5 @@
-import { Container, Toolbar } from "@mui/material";
-import type { Breakpoint } from "@mui/material";
+import { Container, Toolbar } from '@mui/material';
+import type { Breakpoint } from '@mui/material';
 
 export default function Main({
   children, size,

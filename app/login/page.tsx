@@ -1,5 +1,12 @@
-import Main from "@/components/Main";
-import { Button, Link, Stack, TextField, Typography } from "@mui/material";
+import type { Metadata } from 'next';
+
+import Main from '@/components/Main';
+
+import { Button, Link, Stack, TextField, Typography } from '@mui/material';
+
+export const metadata: Metadata = {
+  title: 'Login',
+};
 
 export default function Login() {
 	return (
@@ -24,10 +31,10 @@ export default function Login() {
 					size="large"
 					variant="contained"
 				>
-					{"Let's Go!"}
+					{'Let\'s Go!'}
 				</Button>
 				<Typography>
-					{"Don't have an account yet? "}
+					{'Don\'t have an account yet? '}
 					<Link>Register here</Link>!
 				</Typography>
 			</Stack>

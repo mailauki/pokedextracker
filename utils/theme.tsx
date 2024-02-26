@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { createContext, useMemo, useState } from "react";
+import { createContext, useMemo, useState } from 'react';
 
-import { ThemeProvider, createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 
-import { amber, blue, indigo } from "@mui/material/colors";
+import { amber, blue, indigo } from '@mui/material/colors';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -13,11 +13,11 @@ export default function Theme({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [mode, setMode] = useState<"light" | "dark">("light");
+  const [mode, setMode] = useState<'light' | 'dark'>('light');
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
     [],
@@ -30,10 +30,10 @@ export default function Theme({
 					palette: {
 						mode,
 						primary: {
-							main: mode === "dark" ? blue[700] : indigo[800],
+							main: mode === 'dark' ? blue[700] : indigo[800],
 						},
 						secondary: {
-							main: mode === "dark" ? amber[600] : amber[400],
+							main: mode === 'dark' ? amber[600] : amber[400],
 						},
 					},
 				})

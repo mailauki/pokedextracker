@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { AppBar, Checkbox, Container, FormControlLabel, InputAdornment, TextField, Toolbar } from "@mui/material";
+import { AppBar, Checkbox, Container, FormControlLabel, InputAdornment, TextField, Toolbar } from '@mui/material';
 
-import { Search } from "@mui/icons-material";
+import { Search } from '@mui/icons-material';
 
 export default function Searchbar() {
 	return (
@@ -16,9 +16,9 @@ export default function Searchbar() {
 				component={Container}
 				maxWidth="md"
 				sx={{
-					flexDirection: "column",
-					justifyContent: "stretch",
-					alignItems: "flex-start",
+					flexDirection: 'column',
+					justifyContent: 'stretch',
+					alignItems: 'flex-start',
 				}}
 			>
 				<TextField

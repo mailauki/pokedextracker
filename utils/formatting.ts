@@ -1,4 +1,4 @@
-export function padding (number: number | "---", digits: number, value = "0"): string {
+export function padding (number: number | '---', digits: number, value = '0'): string {
   if (parseInt(`${number}`, 10) >= 10 ** digits) {
     return `${number}`;
   }

@@ -1,7 +1,7 @@
-import Main from "@/components/Main";
-import { RssFeed, Twitter } from "@mui/icons-material";
-import { Container, IconButton, Link, Stack, Typography } from "@mui/material";
-import Image from "next/image";
+import Main from '@/components/Main';
+import { RssFeed, Twitter } from '@mui/icons-material';
+import { Container, IconButton, Link, Stack, Typography } from '@mui/material';
+import Image from 'next/image';
 
 export default async function Home() {
   return (

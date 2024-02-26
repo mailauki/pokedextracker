@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Box, LinearProgress, Stack, Typography, useTheme } from "@mui/material";
+import { Box, LinearProgress, Stack, Typography, useTheme } from '@mui/material';
 
 export default function Progress({
 	caught, total,
@@ -13,19 +13,19 @@ export default function Progress({
 	const mode = theme.palette.mode;
 
 	return (
-		<Box sx={{ position: "relative", mt: 1 }}>
+		<Box sx={{ position: 'relative', mt: 1 }}>
 			<Stack
 				alignItems="center"
 				justifyContent="center"
 				sx={{
-					position: "absolute", zIndex: 10,
-					height: "100%", width: "100%",
+					position: 'absolute', zIndex: 10,
+					height: '100%', width: '100%',
 				}}
 			>
 				<Typography
 					sx={{
 						// color: (theme) => theme.palette.secondary.contrastText,
-						filter: mode === "dark" ? "drop-shadow(2px 2px 3px black)" : "inherit",
+						filter: mode === 'dark' ? 'drop-shadow(2px 2px 3px black)' : 'inherit',
 					}}
 					variant="overline"
 				>
@@ -37,7 +37,7 @@ export default function Progress({
 				sx={{
 					height: 28,
 					borderRadius: (theme) => theme.shape.borderRadius,
-					filter: mode === "dark" ? "opacity(0.75)" : "inherit",
+					filter: mode === 'dark' ? 'opacity(0.75)' : 'inherit',
 				}}
 				value={percent}
 				variant="determinate"

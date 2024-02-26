@@ -1,5 +1,5 @@
-import type { GameFamily } from "./games";
-import type { Pokemon } from "./pokemon";
+import type { GameFamily } from './games';
+import type { Pokemon } from './pokemon';
 
 export interface Capture {
   dex_id: number;
