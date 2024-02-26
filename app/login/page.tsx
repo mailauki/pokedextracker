@@ -10,26 +10,26 @@ export const metadata: Metadata = {
 
 export default function Login() {
 	return (
-		<Main size="xs">
+		<Main size='xs'>
 			<Stack
-				alignItems="center"
-				component="form"
-				direction="column"
+				alignItems='center'
+				component='form'
+				direction='column'
 				spacing={3}
 			>
 				<TextField
 					fullWidth
-					label="Username"
+					label='Username'
 				/>
 				<TextField
 					fullWidth
-					label="Password"
-					type="password"
+					label='Password'
+					type='password'
 				/>
 				<Button
 					fullWidth
-					size="large"
-					variant="contained"
+					size='large'
+					variant='contained'
 				>
 					{'Let\'s Go!'}
 				</Button>

@@ -18,7 +18,7 @@
     "comma-spacing": "off",
     "computed-property-spacing": "error",
     "eol-last": "error",
-    "jsx-quotes": ["error", "prefer-double"],
+    "jsx-quotes": ["error", "prefer-single"],
     "key-spacing": "error",
     "keyword-spacing": "off",
     "no-extra-semi": "off",

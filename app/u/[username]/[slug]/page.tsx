@@ -4,8 +4,9 @@ import Main from '@/components/Main';
 import Searchbar from './Searchbar';
 import DexHeader from './DexHeader';
 import PokeContainer from './PokeContainer';
+import InfoDrawer from './InfoDrawer';
 
-import { Toolbar } from '@mui/material';
+import { Box, Stack, Toolbar } from '@mui/material';
 
 import type { Dex } from '@/types/dexes';
 
@@ -34,13 +35,16 @@ export default async function Dex({ params }: Props) {
 	const captures = await captureRes.json();
 
 	return (
-		<>
-			<Searchbar />
-			<Main size="md">
-				<Toolbar sx={{ height: 130 }} />
-				<DexHeader dex={dex} />
-				<PokeContainer captures={captures} dex={dex} />
-			</Main>
-		</>
+		<Stack direction='row'>
+			<Box>
+				<Searchbar />
+				<Main size='md'>
+					{/* <Toolbar sx={{ height: 130 }} /> */}
+					<DexHeader dex={dex} />
+					<PokeContainer captures={captures} dex={dex} />
+				</Main>
+			</Box>
+			<InfoDrawer />
+		</Stack>
 	);
 }

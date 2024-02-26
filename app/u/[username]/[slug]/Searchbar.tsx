@@ -1,20 +1,24 @@
 'use client';
 
-import { AppBar, Checkbox, Container, FormControlLabel, InputAdornment, TextField, Toolbar } from '@mui/material';
+import { AppBar, Checkbox, Container, FormControlLabel, InputAdornment, TextField, Toolbar, useTheme } from '@mui/material';
 
 import { Search } from '@mui/icons-material';
 
 export default function Searchbar() {
+	const theme = useTheme();
 	return (
 		<AppBar
-			color="inherit"
-			position="fixed"
-			sx={{ zIndex: (theme) => theme.zIndex.appBar - 1 }}
+			color='inherit'
+			elevation={theme.palette.mode === 'dark' ? 0 : 3}
+			position='sticky'
+			sx={{
+				zIndex: (theme) => theme.zIndex.appBar - 2,
+			}}
 		>
 			<Toolbar />
 			<Toolbar
 				component={Container}
-				maxWidth="md"
+				maxWidth='md'
 				sx={{
 					flexDirection: 'column',
 					justifyContent: 'stretch',
@@ -24,17 +28,17 @@ export default function Searchbar() {
 				<TextField
 					InputProps={{
 						startAdornment: (
-							<InputAdornment position="start">
+							<InputAdornment position='start'>
 								<Search />
 							</InputAdornment>
 						),
 					}}
 					fullWidth
-					margin="normal"
+					margin='normal'
 				/>
 				<FormControlLabel
 					control={<Checkbox />}
-					label="Hide Caught Pokémon"
+					label='Hide Caught Pokémon'
 					sx={{ mb: 1 }}
 				/>
 			</Toolbar>

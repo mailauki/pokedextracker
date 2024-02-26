@@ -2,12 +2,13 @@
 
 import Sprite from './Sprite';
 
-import { Card, CardActionArea, Stack, Typography, alpha } from '@mui/material';
+import { Card, CardActionArea, CardActions, IconButton, Stack, Typography, alpha } from '@mui/material';
 
 import type { Capture } from '@/types/captures';
 import type { Dex } from '@/types/dexes';
 
 import { nationalId, padding } from '@/utils/formatting';
+import { Info } from '@mui/icons-material';
 
 export default function PokeCard({ capture, dex }: { capture: Capture, dex: Dex }) {
   const regional = dex.dex_type.tags.includes('regional');
@@ -21,25 +22,38 @@ export default function PokeCard({ capture, dex }: { capture: Capture, dex: Dex 
 				height: 120,
 				borderColor: capture.captured ? (theme) => theme.palette.primary.main : 'inherit',
 				bgcolor: capture.captured ? (theme) => alpha(theme.palette.primary.light, 0.25) : 'inherit',
+				position: 'relative',
 			}}
 			variant={capture.captured ? 'outlined': 'elevation'}
 		>
 			<CardActionArea sx={{ height: '100%' }}>
 				<Stack
-					alignItems="center"
-					direction="column"
-					justifyContent="space-between"
+					alignItems='center'
+					direction='column'
+					justifyContent='space-between'
 					sx={{ height: '90%', padding: '5%' }}
 				>
 					<Typography>{capture.pokemon.name}</Typography>
 
 					<Sprite capture={capture} dex={dex} />
 
-					<Typography variant="overline">
+					<Typography variant='overline'>
 						#{padding(idToDisplay, paddingDigits)}
 					</Typography>
 				</Stack>
 			</CardActionArea>
+			<CardActions
+				sx={{
+					position: 'absolute',
+					bottom: 0,
+					right: 0,
+					p: 0,
+				}}
+			>
+				<IconButton size='small'>
+					<Info />
+				</IconButton>
+			</CardActions>
 		</Card>
 	);
 }

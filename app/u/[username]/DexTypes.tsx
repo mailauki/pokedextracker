@@ -9,12 +9,12 @@ const EXCLUDED_TAGS = ['regional', 'game national', 'full national'];
 export default function DexTypes({ dex }: { dex: Dex }) {
 	return (
 		<Stack
-			alignItems="center"
-			direction="row"
+			alignItems='center'
+			direction='row'
 			spacing={1}
 			sx={{ display: { xs: 'none', sm: 'flex' } }}
 		>
-			{dex.shiny && <ShinyIcon fontSize="small" />}
+			{dex.shiny && <ShinyIcon fontSize='small' />}
 			{[
 				dex.dex_type.base_dex_type?.name || dex.dex_type.name,
 				...dex.dex_type.tags.filter((tag) => !EXCLUDED_TAGS.includes(tag)),

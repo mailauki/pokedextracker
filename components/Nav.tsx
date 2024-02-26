@@ -12,20 +12,20 @@ export default function Nav() {
   const colorMode = React.useContext(ColorModeContext);
 
 	return (
-		<AppBar position="fixed">
+		<AppBar position='fixed'>
 			<Toolbar sx={{ justifyContent: 'space-between' }}>
 				<Link
-					color="inherit"
-					href="/"
+					color='inherit'
+					href='/'
 					sx={{ cursor: 'pointer' }}
-					underline="none"
-					variant="h6"
+					underline='none'
+					variant='h6'
 				>
 					Pokédex Tracker
 				</Link>
-				<Stack direction="row">
+				<Stack direction='row'>
 					<IconButton
-						color="inherit"
+						color='inherit'
 						onClick={colorMode.toggleColorMode}
 					>
 						{mode === 'dark' ? (
@@ -35,9 +35,9 @@ export default function Nav() {
 						)}
 					</IconButton>
 					<Button
-						color="inherit"
-						component="a"
-						href="/login"
+						color='inherit'
+						component='a'
+						href='/login'
 					>
 						Login
 					</Button>

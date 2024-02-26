@@ -14,11 +14,11 @@ export default function DexPreview({ dex }: { dex: Dex }) {
 	return (
 		<Box sx={{ mt: 5 }}>
 			<Stack
-				alignItems="center"
-				direction="row"
-				justifyContent="space-between"
+				alignItems='center'
+				direction='row'
+				justifyContent='space-between'
 			>
-				<Link href={`/u/${username}/${dex.slug}`} variant="h6">{dex.title}</Link>
+				<Link href={`/u/${username}/${dex.slug}`} variant='h6'>{dex.title}</Link>
 				<DexTypes dex={dex} />
 			</Stack>
 			<Progress caught={dex.caught} total={dex.total} />

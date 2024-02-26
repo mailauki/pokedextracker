@@ -15,8 +15,8 @@ export default function Progress({
 	return (
 		<Box sx={{ position: 'relative', mt: 1 }}>
 			<Stack
-				alignItems="center"
-				justifyContent="center"
+				alignItems='center'
+				justifyContent='center'
 				sx={{
 					position: 'absolute', zIndex: 10,
 					height: '100%', width: '100%',
@@ -27,20 +27,20 @@ export default function Progress({
 						// color: (theme) => theme.palette.secondary.contrastText,
 						filter: mode === 'dark' ? 'drop-shadow(2px 2px 3px black)' : 'inherit',
 					}}
-					variant="overline"
+					variant='overline'
 				>
 					<b>{percent.toFixed(1)}</b>% done! (<b>{caught}</b> caught, <b>{total - caught}</b> to go)
 				</Typography>
 			</Stack>
 			<LinearProgress
-				color="secondary"
+				color='secondary'
 				sx={{
 					height: 28,
 					borderRadius: (theme) => theme.shape.borderRadius,
 					filter: mode === 'dark' ? 'opacity(0.75)' : 'inherit',
 				}}
 				value={percent}
-				variant="determinate"
+				variant='determinate'
 			/>
 		</Box>
 	);

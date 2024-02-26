@@ -14,11 +14,11 @@ export default function DexHeader({ dex }: { dex: Dex }) {
 	return (
 		<Box sx={{ mt: 5 }}>
 			<Stack
-				alignItems="center"
-				direction="row"
-				justifyContent="space-between"
+				alignItems='center'
+				direction='row'
+				justifyContent='space-between'
 			>
-				<Typography variant="h3">{dex.title}</Typography>
+				<Typography variant='h3'>{dex.title}</Typography>
 				<DexTypes dex={dex} />
 			</Stack>
 			<Link href={`/u/${username}`}>/u/{username}</Link>

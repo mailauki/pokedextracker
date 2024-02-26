@@ -8,8 +8,8 @@ export default function Main({
 	size: false | Breakpoint | undefined;
 }>) {
 	return (
-		<Container component="main" maxWidth={size}>
-			<Toolbar sx={{ mb: 3 }} />
+		<Container component='main' maxWidth={size}>
+			{/* <Toolbar sx={{ mb: 3 }} /> */}
 			{children}
 			<Toolbar />
 		</Container>
