@@ -11,8 +11,13 @@ export default function DexTypes({ dex }: { dex: Dex }) {
 		<Stack
 			alignItems='center'
 			direction='row'
+			flexWrap='wrap'
+			justifyContent='flex-end'
 			spacing={1}
-			sx={{ display: { xs: 'none', sm: 'flex' } }}
+			sx={{
+				display: { xs: 'none', sm: 'flex' },
+			}}
+			useFlexGap
 		>
 			{dex.shiny && <ShinyIcon fontSize='small' />}
 			{[

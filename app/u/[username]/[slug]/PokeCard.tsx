@@ -26,7 +26,10 @@ export default function PokeCard({ capture, dex }: { capture: Capture, dex: Dex 
 			}}
 			variant={capture.captured ? 'outlined': 'elevation'}
 		>
-			<CardActionArea sx={{ height: '100%' }}>
+			<CardActionArea
+				onClick={() => alert('card clicked')}
+				sx={{ height: '100%', width: '100%' }}
+			>
 				<Stack
 					alignItems='center'
 					direction='column'
@@ -42,6 +45,7 @@ export default function PokeCard({ capture, dex }: { capture: Capture, dex: Dex 
 					</Typography>
 				</Stack>
 			</CardActionArea>
+
 			<CardActions
 				sx={{
 					position: 'absolute',
@@ -50,7 +54,10 @@ export default function PokeCard({ capture, dex }: { capture: Capture, dex: Dex 
 					p: 0,
 				}}
 			>
-				<IconButton size='small'>
+				<IconButton
+					onClick={() => alert('button clicked')}
+					size='small'
+				>
 					<Info />
 				</IconButton>
 			</CardActions>

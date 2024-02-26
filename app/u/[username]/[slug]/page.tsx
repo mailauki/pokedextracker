@@ -6,7 +6,7 @@ import DexHeader from './DexHeader';
 import PokeContainer from './PokeContainer';
 import InfoDrawer from './InfoDrawer';
 
-import { Box, Stack, Toolbar } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
 import type { Dex } from '@/types/dexes';
 
@@ -39,7 +39,6 @@ export default async function Dex({ params }: Props) {
 			<Box>
 				<Searchbar />
 				<Main size='md'>
-					{/* <Toolbar sx={{ height: 130 }} /> */}
 					<DexHeader dex={dex} />
 					<PokeContainer captures={captures} dex={dex} />
 				</Main>

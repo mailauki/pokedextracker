@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 
 import Main from '@/components/Main';
+import LoginForm from './LoginForm';
 
-import { Button, Link, Stack, TextField, Typography } from '@mui/material';
+import { Link, Toolbar, Typography } from '@mui/material';
 
 export const metadata: Metadata = {
   title: 'Login',
@@ -11,33 +12,14 @@ export const metadata: Metadata = {
 export default function Login() {
 	return (
 		<Main size='xs'>
-			<Stack
-				alignItems='center'
-				component='form'
-				direction='column'
-				spacing={3}
-			>
-				<TextField
-					fullWidth
-					label='Username'
-				/>
-				<TextField
-					fullWidth
-					label='Password'
-					type='password'
-				/>
-				<Button
-					fullWidth
-					size='large'
-					variant='contained'
-				>
-					{'Let\'s Go!'}
-				</Button>
-				<Typography>
-					{'Don\'t have an account yet? '}
-					<Link>Register here</Link>!
-				</Typography>
-			</Stack>
+			<Toolbar sx={{ mt: 5 }} />
+
+			<LoginForm />
+
+			<Typography sx={{ mt: 3 }} textAlign='center'>
+				{'Don\'t have an account yet? '}
+				<Link href='/register'>Register here</Link>!
+			</Typography>
 		</Main>
 	);
 }
