@@ -1,4 +1,4 @@
-export function padding (number: number | '---', digits: number, value = '0'): string {
+export function padding(number: number | '---', digits: number, value = '0'): string {
   if (parseInt(`${number}`, 10) >= 10 ** digits) {
     return `${number}`;
   }
@@ -12,6 +12,17 @@ export function padding (number: number | '---', digits: number, value = '0'): s
 // update when we do know the real national IDs easier. Most of the time, this
 // function will just return the ID again because our database national IDs will
 // be correct.
-export function nationalId (id: number): number {
+export function nationalId(id: number): number {
   return id;
+}
+
+export function pad(number: number) {
+	switch (true) {
+    case (number<10):
+      return `00${number}`;
+    case (number>9 && number<100):
+      return `0${number}`;
+    default:
+      return `${number}`;
+  }
 }

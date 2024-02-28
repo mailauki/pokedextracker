@@ -6,7 +6,7 @@ import DexHeader from './DexHeader';
 import PokeContainer from './PokeContainer';
 import InfoDrawer from './InfoDrawer';
 
-import { Box, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 
 import type { Dex } from '@/types/dexes';
 
@@ -34,16 +34,20 @@ export default async function Dex({ params }: Props) {
 	const captureRes = await fetch(`https://pokedextracker.com/api/users/${username}/dexes/${slug}/captures`);
 	const captures = await captureRes.json();
 
+	const selectedPokemon = captures[0].pokemon;
+	const selectedRes = await fetch(`https://pokedextracker.com/api/pokemon/${selectedPokemon.national_id}?dex_type=${selectedPokemon.dex_number}`);
+	const selected = await selectedRes.json();
+
 	return (
 		<Stack direction='row'>
-			<Box>
+			<Stack flexGrow={1}>
 				<Searchbar />
 				<Main size='md'>
 					<DexHeader dex={dex} />
 					<PokeContainer captures={captures} dex={dex} />
 				</Main>
-			</Box>
-			<InfoDrawer />
+			</Stack>
+			<InfoDrawer dex={dex} pokemon={selected} />
 		</Stack>
 	);
 }

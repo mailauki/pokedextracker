@@ -2,12 +2,21 @@
 
 import { useState } from 'react';
 
+import Sprite from './Sprite';
+
 import type { Theme, CSSObject } from '@mui/material/styles';
 import { styled, useTheme } from '@mui/material/styles';
 
-import { Drawer as MuiDrawer, IconButton, Toolbar, ListItem, ListItemText, List, Divider, Stack } from '@mui/material';
+import { Drawer as MuiDrawer, IconButton, Toolbar, ListItem, ListItemText, List, Divider, Stack, ListItemAvatar } from '@mui/material';
 
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+
+import type { Dex } from '@/types/dexes';
+import type { Pokemon } from '@/types/pokemon';
+
+import { nationalId, padding } from '@/utils/formatting';
+import EvolutionFamily from './EvolutionFamily';
+import Locations from './Locations';
 
 const drawerWidth = 340;
 
@@ -20,7 +29,7 @@ const openedMixin = (theme: Theme): CSSObject => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
-  overflowX: 'hidden',
+  overflow: 'hidden',
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
@@ -28,7 +37,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  overflowX: 'hidden',
+  overflow: 'hidden',
   width: `calc(${theme.spacing(4)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(6)} + 1px)`,
@@ -52,9 +61,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function InfoDrawer() {
+export default function InfoDrawer({ pokemon, dex }: { pokemon: Pokemon, dex: Dex }) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+	console.log(pokemon);
+  const regional = dex.dex_type.tags.includes('regional');
+  const idToDisplay = regional ? (pokemon.dex_number === -1 ? '---' : pokemon.dex_number) : nationalId(pokemon.national_id);
+  const paddingDigits = dex.total >= 1000 ? 4 : 3;
+	// #{padding(dex.dex_type.tags.includes('regional') ? (pokemon.dex_number === -1 ? '---' : pokemon.dex_number) : nationalId(pokemon.national_id), dex.total >= 1000 ? 4 : 3)}
 
 	return (
 		<>
@@ -80,14 +94,22 @@ export default function InfoDrawer() {
 						{open ? <ChevronRight /> : <ChevronLeft />}
 					</IconButton>
 					<Divider orientation='vertical' />
-					<List>
+					<List sx={{ width: '100%' }}>
 						<Toolbar/>
 						<ListItem>
-							<ListItemText primary='Hello' />
+							<ListItemAvatar>
+								<Sprite dex={dex} pokemon={pokemon} />
+							</ListItemAvatar>
+							<ListItemText
+								primary={pokemon.name}
+								secondary={`#${padding(idToDisplay, paddingDigits)}`}
+							/>
 						</ListItem>
-						<ListItem>
-							<ListItemText primary='World' />
-						</ListItem>
+						<Divider />
+						<Locations locations={pokemon.locations} />
+						<Divider />
+						<EvolutionFamily dex={dex} evolution_family={pokemon.evolution_family} />
+						{/* <pre>{JSON.stringify(pokemon, null, 2)}</pre> */}
 					</List>
 				</Stack>
 			</Drawer>

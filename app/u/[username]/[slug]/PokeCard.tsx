@@ -38,7 +38,7 @@ export default function PokeCard({ capture, dex }: { capture: Capture, dex: Dex 
 				>
 					<Typography>{capture.pokemon.name}</Typography>
 
-					<Sprite capture={capture} dex={dex} />
+					<Sprite dex={dex} pokemon={capture.pokemon} />
 
 					<Typography variant='overline'>
 						#{padding(idToDisplay, paddingDigits)}
