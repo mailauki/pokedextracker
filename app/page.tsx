@@ -1,11 +1,13 @@
 import Main from '@/components/Main';
 import { RssFeed, Twitter } from '@mui/icons-material';
-import { Container, IconButton, Link, Stack, Typography } from '@mui/material';
+import { Container, IconButton, Link, Stack, Toolbar, Typography } from '@mui/material';
 import Image from 'next/image';
 
 export default async function Home() {
   return (
 		<Main size='md'>
+			<Toolbar sx={{ mb: 2 }} />
+
 			<Stack alignItems='center'>
 				<Image
 					alt="Gotta catch 'em all!"

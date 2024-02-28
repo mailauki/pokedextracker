@@ -14,6 +14,8 @@ export default function Login() {
 		<Main size='xs'>
 			<Toolbar sx={{ mt: 5 }} />
 
+			<Typography variant='h3'>Login</Typography>
+
 			<LoginForm />
 
 			<Typography sx={{ mt: 3 }} textAlign='center'>
