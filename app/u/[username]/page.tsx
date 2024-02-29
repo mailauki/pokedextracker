@@ -6,6 +6,7 @@ import DexPreview from './DexPreview';
 import { Box, Toolbar, Typography } from '@mui/material';
 
 import type { Dex } from '@/types/dexes';
+import { getUser } from '@/utils/get-user';
 
 interface Props {
   params: { username: string }
@@ -27,8 +28,7 @@ export default async function Profile({
 	}
 }) {
 	const { username } = params;
-	const res = await fetch(`https://pokedextracker.com/api/users/${username}`);
-	const user = await res.json();
+	const user = await getUser(username);
 
 	return (
 		<Main size='md'>

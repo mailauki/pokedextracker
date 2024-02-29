@@ -29,7 +29,7 @@ const openedMixin = (theme: Theme): CSSObject => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
-  overflow: 'hidden',
+  overflowX: 'hidden',
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
@@ -37,7 +37,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  overflow: 'hidden',
+  overflowX: 'hidden',
   width: `calc(${theme.spacing(4)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(6)} + 1px)`,
@@ -78,7 +78,7 @@ export default function InfoDrawer({ pokemon, dex }: { pokemon: Pokemon, dex: De
 				sx={{ zIndex: (theme) => theme.zIndex.appBar - 1 }}
 				variant='permanent'
 			>
-				<Stack direction='row'>
+				<Stack direction='row' divider={<Divider orientation='vertical' />}>
 					<IconButton
 						onClick={() => setOpen(!open)}
 						sx={{
@@ -89,28 +89,33 @@ export default function InfoDrawer({ pokemon, dex }: { pokemon: Pokemon, dex: De
 							},
 							bgcolor: (theme) => theme.palette.background.default,
 							borderRadius: 0,
+							// zIndex: (theme) => theme.zIndex.drawer + 100,
 						}}
 					>
 						{open ? <ChevronRight /> : <ChevronLeft />}
 					</IconButton>
-					<Divider orientation='vertical' />
-					<List sx={{ width: '100%' }}>
-						<Toolbar/>
-						<ListItem>
-							<ListItemAvatar>
-								<Sprite dex={dex} pokemon={pokemon} />
-							</ListItemAvatar>
-							<ListItemText
-								primary={pokemon.name}
-								secondary={`#${padding(idToDisplay, paddingDigits)}`}
-							/>
-						</ListItem>
-						<Divider />
+					<Stack
+						component={List}
+						disablePadding
+						divider={<Divider flexItem />}
+						justifyContent='space-between'
+						sx={{ width: '100%', height: '100vh' }}
+					>
+						<>
+							<Toolbar />
+							<ListItem>
+								<ListItemAvatar>
+									<Sprite dex={dex} pokemon={pokemon} />
+								</ListItemAvatar>
+								<ListItemText
+									primary={pokemon.name}
+									secondary={`#${padding(idToDisplay, paddingDigits)}`}
+								/>
+							</ListItem>
+						</>
 						<Locations locations={pokemon.locations} />
-						<Divider />
 						<EvolutionFamily dex={dex} evolution_family={pokemon.evolution_family} />
-						{/* <pre>{JSON.stringify(pokemon, null, 2)}</pre> */}
-					</List>
+					</Stack>
 				</Stack>
 			</Drawer>
 		</>

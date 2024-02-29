@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import { useContext } from 'react';
 
 import { Brightness4, Brightness7 } from '@mui/icons-material';
 import { AppBar, Button, IconButton, Link, Stack, Toolbar, useTheme } from '@mui/material';
@@ -9,7 +9,7 @@ import { ColorModeContext } from '@/utils/theme';
 export default function Nav() {
 	const theme = useTheme();
 	const mode = theme.palette.mode;
-  const colorMode = React.useContext(ColorModeContext);
+  const colorMode = useContext(ColorModeContext);
 
 	return (
 		<AppBar position='fixed'>

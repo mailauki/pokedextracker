@@ -12,8 +12,9 @@ export default function EvolutionFamily({ locations }: { locations: Location[] }
 					width: '100%',
 					bgcolor: 'background.paper',
 					position: 'relative',
-					overflow: 'auto',
-					height: 'calc(100vh - (16px + 8px + 64px + 72px + 56px + 2px))',
+					overflowY: 'auto',
+					flex: '1 1 auto',
+					// height: 'calc(100vh - (16px + 8px + 64px + 72px + 56px + 2px))',
 					'& ul': { padding: 0 },
 				}}
 			>

@@ -10,29 +10,31 @@ import { Stack } from '@mui/material';
 
 import type { Dex } from '@/types/dexes';
 
+import { getUser } from '@/utils/get-user';
+import { getCaptures } from '@/utils/get-captures';
+
 interface Props {
   params: { username: string, slug: string }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { username, slug } = params;
-	const userRes = await fetch(`https://pokedextracker.com/api/users/${username}`);
-	const user = await userRes.json();
+
+	const user = await getUser(username);
 	const dex = user.dexes.find((dex: Dex) => dex.slug === slug);
 
   return {
-    title: dex.title || 'Dex',
+    title: dex?.title || 'Dex',
   };
 }
 
 export default async function Dex({ params }: Props) {
 	const { username, slug } = params;
-	const userRes = await fetch(`https://pokedextracker.com/api/users/${username}`);
-	const user = await userRes.json();
+
+	const user = await getUser(username);
 	const dex = user.dexes.find((dex: Dex) => dex.slug === slug);
 
-	const captureRes = await fetch(`https://pokedextracker.com/api/users/${username}/dexes/${slug}/captures`);
-	const captures = await captureRes.json();
+	const captures = await getCaptures(username, slug);
 
 	const selectedPokemon = captures[0].pokemon;
 	const selectedRes = await fetch(`https://pokedextracker.com/api/pokemon/${selectedPokemon.national_id}?dex_type=${selectedPokemon.dex_number}`);
@@ -43,11 +45,11 @@ export default async function Dex({ params }: Props) {
 			<Stack flexGrow={1}>
 				<Searchbar />
 				<Main size='md'>
-					<DexHeader dex={dex} />
-					<PokeContainer captures={captures} dex={dex} />
+					<DexHeader dex={dex!} />
+					<PokeContainer captures={captures} dex={dex!} />
 				</Main>
 			</Stack>
-			<InfoDrawer dex={dex} pokemon={selected} />
+			<InfoDrawer dex={dex!} pokemon={selected} />
 		</Stack>
 	);
 }
