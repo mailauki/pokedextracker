@@ -26,3 +26,8 @@ export function pad(number: number) {
       return `${number}`;
   }
 }
+
+export function capitalize(word: string): string {
+	// return input.replace(/([^\W_]+[^\s-]*) */g, (word) => word[0].toUpperCase() + word.substring(1).toLowerCase());
+	return word?.charAt(0).toUpperCase() + word?.slice(1);
+}

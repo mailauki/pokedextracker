@@ -23,11 +23,11 @@ export default function EvolutionFamily({ locations }: { locations: Location[] }
 						<ul>
 							<ListSubheader>Pokémon {location.game.name}</ListSubheader>
 							{location.value.map((item) => (
-								<ListItem key={`item-${location.game.id}-${item}`}>
+								<ListItem key={`item-${location.game.id}-${item}`} sx={{ alignItems: 'baseline' }}>
 									<ListItemIcon sx={{ minWidth: 'fit-content', mr: 1, fontSize: '8px' }}>
-										<Bullet fontSize='inherit' />
+										<Bullet fontSize='inherit' sx={{ paddingY: 0.25 }} />
 									</ListItemIcon>
-									<ListItemText primary={`Item ${item}`} />
+									<ListItemText primary={item} sx={{ textWrap: 'wrap' }} />
 								</ListItem>
 							))}
 						</ul>

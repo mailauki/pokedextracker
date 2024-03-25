@@ -12,6 +12,7 @@ import type { Dex } from '@/types/dexes';
 
 import { getUser } from '@/utils/get-user';
 import { getCaptures } from '@/utils/get-captures';
+// import { getPokemon } from '@/utils/get-pokemon';
 
 interface Props {
   params: { username: string, slug: string }
@@ -34,14 +35,18 @@ export default async function Dex({ params }: Props) {
 	const user = await getUser(username);
 	const dex = user.dexes.find((dex: Dex) => dex.slug === slug);
 
+	// const userData = getUser(username);
+	// const capturesData = getCaptures(username, slug);
+  // const [user, captures] = await Promise.all([userData, capturesData]);
+	// const dex = user.dexes.find((dex: Dex) => dex.slug === slug);
+
 	const captures = await getCaptures(username, slug);
 
-	const selectedPokemon = captures[0].pokemon;
-	const selectedRes = await fetch(`https://pokedextracker.com/api/pokemon/${selectedPokemon.national_id}?dex_type=${selectedPokemon.dex_number}`);
-	const selected = await selectedRes.json();
+	// const selectedPokemon = captures[0].pokemon;
+	// const pokemon = await getPokemon(selectedPokemon!);
 
 	return (
-		<Stack direction='row'>
+		<Stack direction='row' sx={{ overflowX: 'hidden' }}>
 			<Stack flexGrow={1}>
 				<Searchbar />
 				<Main size='md'>
@@ -49,7 +54,7 @@ export default async function Dex({ params }: Props) {
 					<PokeContainer captures={captures} dex={dex!} />
 				</Main>
 			</Stack>
-			<InfoDrawer dex={dex!} pokemon={selected} />
+			<InfoDrawer dex={dex!} />
 		</Stack>
 	);
 }

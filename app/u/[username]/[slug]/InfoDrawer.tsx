@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 
 import Sprite from './Sprite';
 
@@ -18,7 +18,10 @@ import { nationalId, padding } from '@/utils/formatting';
 import EvolutionFamily from './EvolutionFamily';
 import Locations from './Locations';
 
-const drawerWidth = 340;
+import type { SelectedPokemonContextType } from '@/utils/context';
+import { SelectedPokemonContext } from '@/utils/context';
+
+const drawerWidth = 400;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -61,21 +64,65 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function InfoDrawer({ pokemon, dex }: { pokemon: Pokemon, dex: Dex }) {
+export default function InfoDrawer({ dex }: { dex: Dex }) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-	console.log(pokemon);
+
+	const { selectedPokemon } = useContext(SelectedPokemonContext) as SelectedPokemonContextType;
+	const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+
   const regional = dex.dex_type.tags.includes('regional');
+
+	useMemo(async () => {
+		if (selectedPokemon) {
+			fetch(`https://pokedextracker.com/api/pokemon/${selectedPokemon.national_id}?dex_type=${selectedPokemon.dex_number}`)
+			.then((res) => res.json())
+			.then((data) => setPokemon(data));
+		}
+	}, [regional, selectedPokemon]);
+
+	if (!pokemon) {
+		return (
+			<Drawer
+				anchor='right'
+				open={false}
+				sx={{ zIndex: (theme) => theme.zIndex.appBar - 1 }}
+				variant='permanent'
+			>
+				<Stack direction='row' divider={<Divider orientation='vertical' />}>
+					<IconButton
+						disabled
+						sx={{
+							height: '100vh',
+							width: theme.spacing(4),
+							[theme.breakpoints.up('sm')]: {
+								width: theme.spacing(6),
+							},
+							bgcolor: (theme) => theme.palette.background.default,
+							borderRadius: 0,
+						}}
+					>
+						<ChevronLeft />
+					</IconButton>
+				</Stack>
+			</Drawer>
+		);
+	}
+
+	console.log({ pokemon });
+
   const idToDisplay = regional ? (pokemon.dex_number === -1 ? '---' : pokemon.dex_number) : nationalId(pokemon.national_id);
   const paddingDigits = dex.total >= 1000 ? 4 : 3;
-	// #{padding(dex.dex_type.tags.includes('regional') ? (pokemon.dex_number === -1 ? '---' : pokemon.dex_number) : nationalId(pokemon.national_id), dex.total >= 1000 ? 4 : 3)}
 
 	return (
 		<>
 			<Drawer
 				anchor='right'
 				open={open}
-				sx={{ zIndex: (theme) => theme.zIndex.appBar - 1 }}
+				sx={{
+					zIndex: (theme) => theme.zIndex.appBar - 1,
+					// overflowX: 'hidden',
+				}}
 				variant='permanent'
 			>
 				<Stack direction='row' divider={<Divider orientation='vertical' />}>
@@ -99,7 +146,11 @@ export default function InfoDrawer({ pokemon, dex }: { pokemon: Pokemon, dex: De
 						disablePadding
 						divider={<Divider flexItem />}
 						justifyContent='space-between'
-						sx={{ width: '100%', height: '100vh' }}
+						sx={{
+							width: '100%',
+							height: '100vh',
+							// overflowX: 'hidden',
+					}}
 					>
 						<>
 							<Toolbar />

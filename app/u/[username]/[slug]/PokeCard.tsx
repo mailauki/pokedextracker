@@ -9,11 +9,22 @@ import type { Dex } from '@/types/dexes';
 
 import { nationalId, padding } from '@/utils/formatting';
 import { Info } from '@mui/icons-material';
+import { handleCapturePokemon } from '@/utils/handle-pokemon';
 
-export default function PokeCard({ capture, dex }: { capture: Capture, dex: Dex }) {
+import type { SelectedPokemonContextType } from '@/utils/context';
+import { SelectedPokemonContext } from '@/utils/context';
+import { useContext } from 'react';
+
+export default function PokeCard({
+	capture, dex,
+}: {
+	capture: Capture,
+	dex: Dex,
+}) {
   const regional = dex.dex_type.tags.includes('regional');
   const idToDisplay = regional ? (capture.pokemon.dex_number === -1 ? '---' : capture.pokemon.dex_number) : nationalId(capture.pokemon.national_id);
   const paddingDigits = dex.total >= 1000 ? 4 : 3;
+	const { setSelectedPokemon } = useContext(SelectedPokemonContext) as SelectedPokemonContextType;
 
 	return (
 		<Card
@@ -27,7 +38,7 @@ export default function PokeCard({ capture, dex }: { capture: Capture, dex: Dex 
 			variant={capture.captured ? 'outlined': 'elevation'}
 		>
 			<CardActionArea
-				onClick={() => alert('card clicked')}
+				onClick={() => handleCapturePokemon(capture.pokemon)}
 				sx={{ height: '100%', width: '100%' }}
 			>
 				<Stack
@@ -55,7 +66,8 @@ export default function PokeCard({ capture, dex }: { capture: Capture, dex: Dex 
 				}}
 			>
 				<IconButton
-					onClick={() => alert('button clicked')}
+					// onClick={() => handleSelectPokemon(capture.pokemon)}
+					onClick={() => setSelectedPokemon(capture.pokemon)}
 					size='small'
 				>
 					<Info />

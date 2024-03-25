@@ -29,6 +29,7 @@ export default async function Profile({
 }) {
 	const { username } = params;
 	const user = await getUser(username);
+	// console.log(user);
 
 	return (
 		<Main size='md'>

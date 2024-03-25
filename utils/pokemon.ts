@@ -7,7 +7,7 @@ interface Pokemon {
   form: string | null;
 }
 
-export function iconClass ({ national_id: nationalId, form }: Pokemon, dex: Dex) {
+export function iconClass({ national_id: nationalId, form }: Pokemon, dex: Dex) {
 	const shiny = dex.shiny ? 'color-shiny' : '';
 	const forms = form ? `form-${form}` : '';
 	const family = dex.dex_type.game_family_id ? `game-family-${dex.dex_type.game_family_id}` : '';

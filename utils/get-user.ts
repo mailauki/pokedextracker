@@ -1,7 +1,7 @@
 import type { User } from '@/types/users';
 import { cache } from 'react';
 
-export const getUser = cache(async (username: string) => {
+export const getUser = cache(async (username: string | string[]) => {
 	const res = await fetch(`https://pokedextracker.com/api/users/${username}`);
 	// return await res.json().then((data: User) => {
 	// 	return data;

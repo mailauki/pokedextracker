@@ -7,7 +7,12 @@ import { Grid } from '@mui/material';
 import type { Capture } from '@/types/captures';
 import type { Dex } from '@/types/dexes';
 
-export default function PokeContainer({ captures, dex }: { captures: Capture[], dex: Dex }) {
+export default function PokeContainer({
+	captures, dex,
+}: {
+	captures: Capture[],
+	dex: Dex,
+}) {
 	return (
 		<Grid
 			container
