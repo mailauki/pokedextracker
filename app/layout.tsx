@@ -33,10 +33,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-		<html lang='en'>
+		<html lang='en' style={{ minHeight: '100vh' }}>
 			<Theme>
 				<SelectedPokemonProvider>
-					<Paper className={inter.className} component='body' elevation={0} sx={{ m: 0 }}>
+					<Paper className={inter.className} component='body' elevation={0} sx={{ m: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 						<AppRouterCacheProvider>
 							<Nav />
 							{children}

@@ -109,8 +109,6 @@ export default function InfoDrawer({ dex }: { dex: Dex }) {
 		);
 	}
 
-	console.log({ pokemon });
-
   const idToDisplay = regional ? (pokemon.dex_number === -1 ? '---' : pokemon.dex_number) : nationalId(pokemon.national_id);
   const paddingDigits = dex.total >= 1000 ? 4 : 3;
 
@@ -119,10 +117,7 @@ export default function InfoDrawer({ dex }: { dex: Dex }) {
 			<Drawer
 				anchor='right'
 				open={open}
-				sx={{
-					zIndex: (theme) => theme.zIndex.appBar - 1,
-					// overflowX: 'hidden',
-				}}
+				sx={{ zIndex: (theme) => theme.zIndex.appBar - 1 }}
 				variant='permanent'
 			>
 				<Stack direction='row' divider={<Divider orientation='vertical' />}>
@@ -136,7 +131,6 @@ export default function InfoDrawer({ dex }: { dex: Dex }) {
 							},
 							bgcolor: (theme) => theme.palette.background.default,
 							borderRadius: 0,
-							// zIndex: (theme) => theme.zIndex.drawer + 100,
 						}}
 					>
 						{open ? <ChevronRight /> : <ChevronLeft />}
@@ -149,7 +143,7 @@ export default function InfoDrawer({ dex }: { dex: Dex }) {
 						sx={{
 							width: '100%',
 							height: '100vh',
-							// overflowX: 'hidden',
+							display: !open ? 'none' : '',
 					}}
 					>
 						<>

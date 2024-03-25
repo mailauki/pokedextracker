@@ -4,7 +4,7 @@ import { createContext, useMemo, useState } from 'react';
 
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 
-import { amber, blue, indigo } from '@mui/material/colors';
+import { amber, blue, grey, indigo } from '@mui/material/colors';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -34,6 +34,9 @@ export default function Theme({
 						},
 						secondary: {
 							main: mode === 'dark' ? amber[600] : amber[400],
+						},
+						info: {
+							main: mode === 'dark' ? grey[100] : grey[50],
 						},
 					},
 				})
